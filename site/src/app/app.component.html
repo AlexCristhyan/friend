@@ -1,0 +1,140 @@
+<div class="title-login title-default">
+  <h1>
+    Controle de amigos
+  </h1>
+</div>
+
+<div *ngIf="step == 'Login'" class="col-md-3 login-master">
+  <h2 class="title-login">Login: </h2>
+  <div class="row">
+    <div class="col-md-3 ">
+      <label>Usuário:</label>
+    </div>
+    <div class="col-md-2">
+      <input type="text" name="name" [(ngModel)]="user.userId" required>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-3 ">
+      <label>Senha:</label>
+    </div>
+    <div class="col-md-2">
+      <input type="password" name="name" [(ngModel)]="user.accessKey" required>
+    </div>
+  </div>
+  <div class="row col-md-12 messageTokenExpired">
+    <small>{{messageTokenExpire}}</small>
+  </div>
+  <div class="row">
+    <div class="col-md-12 btn-control ">
+      <button id="save" class="btn-default " [disabled]="inLogin" (click)="login()">Entrar</button>
+    </div>
+  </div>
+</div>
+<div *ngIf="step == 'Connected'" class="col-md-6 float-left">
+  <h2>Cadastre um novo amigo: </h2>
+  <div class="row">
+    <div class="col-md-4">
+      <label><span class="red">*</span> Nome amigo(a):</label>
+    </div>
+    <div class="col-md-2">
+      <input type="text" name="name" [(ngModel)]="friend.name" required>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-4">
+      <label><span class="red">*</span> Latitude da casa:</label>
+    </div>
+    <div class="col-md-2">
+      <input type="text" name="name" [(ngModel)]="friend.latitude" required>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-4">
+      <label><span class="red">*</span> Longitude da casa:</label>
+    </div>
+    <div class="col-md-2">
+      <input type="text" name="name" [(ngModel)]="friend.longitude" required>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12 btn-control ">
+      <button id="save" class="btn-default btn-save" (click)="createUser()">Salvar</button>
+    </div>
+  </div>
+  <h4>Lista de amigos: </h4>
+  
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>
+          Id
+        </th>
+        <th>
+          Nome
+        </th>
+        <th>
+          Latitude
+        </th>
+        <th>
+            Longitude
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let c of listFriend">
+        <td>{{c.id}}</td>
+        <td >{{c.name}}</td>
+        <td >{{c.latitude}}</td>
+        <td>{{c.longitude }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div *ngIf="step == 'Connected'" class="col-md-6 float-left">
+  <h2>Consulta amigos mais próximos:</h2>
+  <div class="row">
+    <div class="col-md-4 ">
+      <label><span class="red">*</span> Latitude:</label>
+    </div>
+    <div class="col-md-6">
+      <input type="text" name="name" [(ngModel)]="latitude" required>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-4 ">
+      <label><span class="red">*</span> Longitude:</label>
+    </div>
+    <div class="col-md-6">
+      <input type="text" name="name" [(ngModel)]="longitude" required>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12 btn-control ">
+      <button id="save" class="btn-default btn-check" (click)="check()">Consultar</button>
+    </div>
+  </div>
+  <h4 class="align-top">Amigos mais próximos: </h4>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>
+          Id
+        </th>
+        <th>
+          Nome
+        </th>
+        <th>
+          Distância <small>(0 é o mais próximo)</small>
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let c of listFriendNear">
+        <td>{{c.id}}</td>
+        <td >{{c.name}}</td>
+        <td >{{c.resultDistancia}}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
