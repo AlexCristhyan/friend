@@ -96,7 +96,7 @@ namespace Friends
 
             app.UseSwaggerUI(c =>
             {
-                c.SwaggerEndpoint("/swagger/v1/swagger.json", "Mundo dos Bebes");
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "Friends");
             });
             app.UseMvc();
         }
